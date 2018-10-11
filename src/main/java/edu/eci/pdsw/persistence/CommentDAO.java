@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 hcadavid
+ * Copyright (C) 2018 fchaves, salzate
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,24 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package edu.eci.pdsw.persistence.mybatisimpl.mappers;
+package edu.eci.pdsw.persistence;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import edu.eci.pdsw.entities.Blog;
 import edu.eci.pdsw.entities.Comment;
-import edu.eci.pdsw.services.ServicesException;
 
 /**
  *
  * @author fchaves
  * @author salzate
  */
-public interface BlogMapper {
+public interface CommentDAO {
 
-	List<Blog> findByUser(@Param("login") String login);
-	List<Comment> searchCommentsByBlogTitle(@Param("title") String title);
-
+	public List<Comment> loadOffensiveLanguageComments() throws PersistenceException;
+	
 }

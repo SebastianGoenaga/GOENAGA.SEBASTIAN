@@ -77,8 +77,40 @@ public class BlogServicesTest {
     }
     */
     
+//    @Test
+//    public void pruebaCeroTest() throws SQLException, ServicesException {
+//        //Insertar datos en la base de datos de pruebas, de acuerdo con la clase
+//        //de equivalencia correspondiente
+//
+//    	qt().forAll(lists().of(Generators.users()).ofSizeBetween(1, 5))
+//    		.check((users) -> {
+//    			Hashtable<String, User> initialUsers = new Hashtable<>();
+//    				
+//    			try {
+//   	    			for(User user : users) {
+//	    				blogServices.createUser(user);
+//	    				initialUsers.put(user.getLogin(), user);
+//	    			}
+//	    			
+//	    			List<User> allUsers = blogServices.listUsers();
+//	    			
+//	    			for(User user : allUsers) {
+//	    				if(!initialUsers.containsKey(user.getLogin())) {
+//	    					return false;
+//	    				}
+//	    			}
+//	    			
+//	    			return initialUsers.size() <= allUsers.size();
+//    			} 
+//    			catch(ServicesException ex) {
+//    				ex.printStackTrace();
+//    				return false;
+//    			}
+//    			
+//    	    });
+    
     @Test
-    public void pruebaCeroTest() throws SQLException, ServicesException {
+    public void searchCommentsByBlogTitleTest() throws SQLException, ServicesException {
         //Insertar datos en la base de datos de pruebas, de acuerdo con la clase
         //de equivalencia correspondiente
 
@@ -108,6 +140,8 @@ public class BlogServicesTest {
     			}
     			
     	    });
+    	
+    	
     	
 
 

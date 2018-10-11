@@ -10,9 +10,7 @@ import com.google.inject.Inject;
 import edu.eci.pdsw.entities.Blog;
 import edu.eci.pdsw.entities.Comment;
 import edu.eci.pdsw.entities.User;
-import edu.eci.pdsw.persistence.BlogDAO;
-import edu.eci.pdsw.persistence.PersistenceException;
-import edu.eci.pdsw.persistence.UserDAO;
+import edu.eci.pdsw.persistence.*;
 import edu.eci.pdsw.services.ServicesException;
 import edu.eci.pdsw.services.BlogServices;
 import java.util.List;
@@ -38,6 +36,9 @@ public class BlogServicesImpl implements BlogServices {
 	
 	@Inject
 	private UserDAO userDAO;
+	
+	@Inject
+	private CommentDAO commentDAO;
 
     @Override
 	public List<User> listUsers() throws ServicesException {
@@ -64,12 +65,20 @@ public class BlogServicesImpl implements BlogServices {
 
 	@Override
 	public List<Comment> searchCommentsByBlogTitle(String title) throws ServicesException {
-		throw new UnsupportedOperationException("Not supported yet.");
+		try {
+			return blogDAO.loadCommentsByBlogTitle(title);
+		} catch (PersistenceException ex) {
+            throw new ServicesException("Search error:"+ex.getLocalizedMessage(), ex);
+		}
 	}
 
 	@Override
 	public List<Comment> searchOffensiveLanguageComments() throws ServicesException {
-		throw new UnsupportedOperationException("Not supported yet.");
+		try {
+			return commentDAO.loadOffensiveLanguageComments();
+		} catch (PersistenceException ex) {
+            throw new ServicesException("Search error:"+ex.getLocalizedMessage(), ex);
+		}
 	}
 
 	@Override
